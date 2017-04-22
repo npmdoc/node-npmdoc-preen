@@ -1,0 +1,32 @@
+before_install:
+    # init xvfb
+    # http://docs.travis-ci.com/user/gui-and-headless-browsers/
+    - export DISPLAY=:99.0 && sh -e /etc/init.d/xvfb start
+branches:
+    only:
+    - alpha
+    - beta
+    - cron
+    - docker.base
+    - docker.latest
+    - master
+    - publish
+    - task
+env:
+    global:
+    # this value is auto-created by shTravisCryptoAesEncryptYml
+    - secure: FYZ5mQVsZx2y/yjAlf1uTK0FupaL30VKdpA8J91dHOfn+fEd7bs/D4mEv4faHixVDmzdM0tUCokghlgi7BQpO2gKgeeDR3tq/7Zer5ZCo/3Bq++Tmd+v/F1MarktKjIsR1kBKoy3tL0Kt6AFREUsyEcEB4M/etfO92etZD9qK/zmNjbJzZJD9PvPe0l06uxIs4LZQnqBY+T89ofmoJsKyT1Ge1BtciTqcwm3wp+ct4IB53InfqZhf5G2foGsAm2wRSeAWGd8KSoC1H9knJVdP2kuFpkHWMkEwxW1X7jOpUrxWXtgA1cG0vWmpXx9bsXLEv7gfeLJwqCE2qGnoZ//jJOU3vwBK96bULbapEiWXQQin35dxX8CsZOnwMHNvJ7nGFDYJ/j972RPZQMvKQnwGRm1dvZnXmbBcE34/0XPvXm9U920jHjeYDezYoHBWPT1GIipvkcYJJWhHP5sWHK+sww0A5Gcy43Vulg0nbAgqm3T2MdreSFWSNKNgX0ONAhGh9vlcw74HIei3lAPAMRXjbRrpDT5ELxRPy2gVdt2I/088kdISpaGCKVHjFsvqp7gyFu9kJtHDsigwqaffs0G92qnXqnOlqDOmeinTAqRX9EpANIha26jWx78fBWCrXF6XKEPehXnsqjBEhfTM1tDEhGmiRStPQnPJ/Cd2539OKo= # CRYPTO_AES_KEY
+    # this value is auto-created by shTravisCryptoAesEncryptYml
+
+language:
+    - node_js
+node_js:
+    - 6
+    # - node
+script:
+    - npm run build-ci
+services:
+    - docker
+# http://docs.travis-ci.com/user/workers/container-based-infrastructure
+sudo:
+    false
